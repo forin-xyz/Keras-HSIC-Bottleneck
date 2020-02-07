@@ -87,7 +87,8 @@ class HSICBottleneckTrained(object):
 class PostTrained(object):
     def __init__(self, model):
         for layer in model.layers:
-            if layer.name != "output_layer":
+            if layer.name == "output_layer":
+                # only train the output_layer                 
                 layer.trainable = True
             else:
                 # 冻结所有非输出层为不可训练
